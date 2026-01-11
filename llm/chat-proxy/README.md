@@ -10,7 +10,7 @@ O objetivo principal é expor a API do chatbot de forma controlada, utilizando a
 
 * **Proxy API:** Recebe pedidos nos endpoints `/api/chat` (para processar perguntas) e `/api/health` (para verificação de estado pelo frontend).
 * **Integração OpenWebUI:** Comunica com o backend do OpenWebUI para obter as respostas do chat.
-* **Serviço Local:** Corre como um serviço leve em `llm.uporto.pt` (ex: porta `5001`), acessível apenas pelo Apache na mesma máquina.
+* **Serviço Local:** Corre como um serviço leve em `llm.linuxkafe.com` (ex: porta `5001`), acessível apenas pelo Apache na mesma máquina.
 
 ---
 
@@ -29,7 +29,7 @@ O script `chat_proxy.py` (normalmente um script Python/Flask ou similar) necessi
 
 ### 2. Configuração do Apache (Proxy Reverso)
 
-Para que o frontend do OTOBO possa aceder a este script (que corre em `http://llm.uporto.pt:5001/`) através do URL público `/llmproxy/`, a configuração do Virtual Host do Apache (ex: `myhelpdesk.up.pt.conf`) deve incluir:
+Para que o frontend do OTOBO possa aceder a este script (que corre em `http://llm.linuxkafe.com:5001/`) através do URL público `/llmproxy/`, a configuração do Virtual Host do Apache (ex: `myhelpdesk.linuxkafe.conf`) deve incluir:
 
 ```apache
 # Permite que o Apache funcione como proxy
@@ -37,8 +37,8 @@ SSLProxyEngine On
 ProxyPreserveHost On
 
 # Redireciona /llmproxy/ para o script local na porta 5001
-ProxyPass /llmproxy/ http://llm.uporto.pt:5001/
-ProxyPassReverse /llmproxy/ http://localhost:5001/
+ProxyPass /llmproxy/ http://llm.linuxkafe.com:5001/
+ProxyPassReverse /llmproxy/ http://llm.linuxkafe.com:5001/
 
 # Protege o endpoint com Shibboleth
 <Location /llmproxy>
