@@ -56,11 +56,13 @@ Body: |
 ```
 #Fluxo de Execução:
 
-**Gatilho**: Ticket criado na Fila Alojamento.
+**Gatilho**: Ticket criado na Fila Alojamento Web.
 
 **Ação**: OTOBO envia este email para o LLM-Email-Service (via SMTP local).
 
 **Processamento**: O serviço extrai o SystemContext, ignora o texto HTML extra, consulta o LLM e devolve a resposta ao ticket.
+
+*Poderá ser utilizado o exemplo de notificação incluído no Notification.yml
 
 ## 📦 Arquitetura do Sistema
 
