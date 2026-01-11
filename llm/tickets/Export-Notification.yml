@@ -1,0 +1,42 @@
+---
+- ChangeBy: 211
+  ChangeTime: 2026-01-09 15:52:56
+  Comment: Envia ticket para processamento pelo llm.linuxkafe.com
+  CreateBy: 211
+  CreateTime: 2025-11-19 17:46:51
+  Data:
+    AgentEnabledByDefault:
+    - Email
+    ArticleAttachmentInclude:
+    - '0'
+    Events:
+    - TicketCreate
+    - TicketQueueUpdate
+    LanguageID:
+    - en
+    LockID:
+    - '1'
+    QueueID:
+    - '1'
+    RecipientAgents:
+    - '111' #id do agent criado com o endereço do servidor do serviço SMTP do LLM
+    StateID:
+    - '1'
+    TransportEmailTemplate:
+    - Default
+    Transports:
+    - Email
+    VisibleForAgent:
+    - '0'
+  ID: 55
+  Message:
+    en:
+      Body: '<p>### METADATA START ###<br>CustomerEmail: &lt;OTOBO_CUSTOMER_DATA_UserEmail&gt;<br>TargetBCC:
+        helpdesk@linuxkafe.com<br>SystemContext: A questão é relacionada com Alojamento
+        Web, máquinas virtuais ou Pastas Partilhadas . Sê técnico, conciso e sugere
+        verificações de conectividade bem como verificações da ligação VPN caso esteja no exterior.
+        <br>Internal: Yes<br>### METADATA END ###<br><br>&lt;OTOBO_CUSTOMER_BODY[3000]&gt;</p>'
+      ContentType: text/html
+      Subject: 'LLM Request: [Ticket#<OTOBO_TICKET_TicketNumber>] <OTOBO_TICKET_Title>'
+  Name: LLM Auto-Reply
+  ValidID: 3

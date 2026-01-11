@@ -1,0 +1,14 @@
+[Unit]
+Description=Gunicorn instance for OTOBO Chat Proxy
+After=network.target
+
+[Service]
+User=1001 
+Group=1001
+WorkingDirectory=/opt/chat-proxy/
+Environment="OTOBO_CHAT_API_KEY=sk-************************"
+ExecStart=/usr/bin/gunicorn --workers 1 --threads 4 --bind 0.0.0.0:5001 --timeout 180 chat_proxy:app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

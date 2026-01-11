@@ -1,0 +1,51 @@
+# 🤖 OTOBO LLM Auto-Reply Service
+
+## 1. Descrição
+
+Este projeto é um **serviço SMTP autónomo (standalone)** escrito em Python, concebido para atuar como um processador de "auto-respostas inteligentes" para o sistema de tickets OTOBO.
+
+O seu objetivo é receber notificações de criação de tickets, processar o pedido do cliente através de uma API de LLM (como o Ollama/Llama 3) e enviar uma sugestão de resolução automática enquanto o cliente aguarda por um humano.
+
+Este serviço é totalmente **independente** do core do OTOBO, funcionando de forma assíncrona para não bloquear o funcionamento do Helpdesk.
+
+---
+
+## 2. Arquitetura
+
+O serviço utiliza uma arquitetura **Produtor-Consumidor** baseada em `asyncio` para garantir estabilidade e proteção do servidor de IA.
+
+1.  **Receção (Produtor):**
+    * O OTOBO (via Postfix) envia um email para o serviço na porta `2525`.
+    * O serviço aceita o email e coloca-o numa **Fila de Espera** (`Queue`).
+    * Se a fila estiver cheia (limite configurável), o email é **descartado** imediatamente para proteger o sistema de sobrecarga ("Load Shedding").
+
+2.  **Processamento (Consumidor/Worker):**
+    * Um ou mais **Workers** retiram pedidos da fila sequencialmente.
+    * O script extrai metadados do corpo do email (Cliente, Contexto, Ticket ID).
+    * O pedido é enviado ao LLM.
+    * Uma resposta formatada (bilingue PT/EN) é enviada ao Cliente.
+    * Uma cópia da resposta é enviada de volta ao OTOBO (como nota oculta) para registo no ticket.
+
+3.  **Envio (Relay):**
+    * Os emails de resposta são entregues através do relay institucional (`mailsrvc.up.pt`).
+
+---
+
+## 3. Funcionalidades Principais
+
+* **Rate Limiting:** Configuração de quantos pedidos o LLM processa em simultâneo (default: 1) para evitar *timeouts*.
+* **Contexto Dinâmico:** O OTOBO pode instruir o LLM sobre como agir dependendo da fila (ex: "És um especialista em Alojamento Web" vs "És um assistente geral").
+* **Modo de Teste:** Permite redirecionar todas as respostas para um email de administrador, evitando envio acidental para clientes durante o desenvolvimento.
+* **Layout Visual:** Emails formatados com separadores de alto contraste e emojis para destacar a sugestão automática.
+
+---
+
+## 4. Instalação
+
+Siga estes passos num servidor Linux (ex: Debian/Ubuntu).
+
+### 4.1. Pré-requisitos
+
+```bash
+sudo apt update
+sudo apt install python3 python3-venv

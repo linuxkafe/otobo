@@ -1,0 +1,440 @@
+# --
+# CustomerDashboard.tt - OTOBO Trainer Edition
+# Versão: Final Obsidian (Vault Link Protection, Full Width, Privacy Warning)
+# --
+
+<script src="https://apps.ilab.uporto.pt/widget.js" defer></script>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+<div id="up-background-fixed"></div>
+
+<style>
+    /* --- CONFIGURAÇÃO DE FUNDO E RESET --- */
+    #up-background-fixed {
+        position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+        background: url('https://www.up.pt/portal/media/images/UPdigital-04.format-jpeg.jpegquality-60.jpg') no-repeat center center;
+        background-size: cover; z-index: -9999;
+    }
+
+    /* Reset de Transparência do OTOBO */
+    body, #oooContent, .oooRoot, .Output, form {
+        background: transparent !important; background-color: transparent !important;
+    }
+
+    /* Layout Principal - OCUPA TODA A LARGURA DISPONÍVEL */
+    #oooContent {
+        width: 100% !important;
+        max-width: 99% !important; 
+        margin: 0 auto;
+        padding: 15px 5px;
+    }
+
+    /* Esconder Header Original */
+    #oooHeader, #oooMobileHeader { display: none !important; }
+
+    /* --- GRELHA DE BOTÕES --- */
+    #custom-buttons-grid {
+        display: grid; 
+        grid-template-columns: repeat(4, 1fr); 
+        gap: 20px; 
+        margin-bottom: 30px;
+        max-width: 1400px; /* Limite apenas para os botões não ficarem esticados demais */
+        margin-left: auto; margin-right: auto;
+    }
+
+    .modern-card {
+        background: linear-gradient(135deg, #005f9e 0%, #003c66 100%);
+        color: white !important; text-decoration: none !important;
+        padding: 25px 15px; border-radius: 12px;
+        display: flex; flex-direction: column; align-items: center; justify-content: center;
+        text-align: center; min-height: 110px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.2); 
+        transition: transform 0.2s, box-shadow 0.2s; 
+        cursor: pointer;
+        border: 1px solid rgba(255,255,255,0.2); 
+        backdrop-filter: blur(4px);
+        position: relative;
+    }
+    .modern-card:hover { transform: translateY(-5px); box-shadow: 0 10px 25px rgba(0,0,0,0.3); }
+    
+    .modern-card i.main-icon { font-size: 36px; margin-bottom: 10px; }
+    .modern-card i.sub-icon { 
+        font-size: 16px; position: absolute; top: 15px; right: 20px; opacity: 0.8; 
+    }
+    .modern-card span { font-weight: bold; font-size: 15px; line-height: 1.2; }
+    
+    .bg-grey { background: linear-gradient(135deg, #6c757d, #495057); }
+    .bg-green { background: linear-gradient(135deg, #28a745, #1e7e34); }
+    .bg-teal { background: linear-gradient(135deg, #17a2b8, #117a8b); }
+
+    /* --- BARRA DE PESQUISA (Transparente) --- */
+    #custom-search-container {
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(10px);
+        padding: 15px 20px; 
+        border-radius: 15px; 
+        margin-bottom: 25px;
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        width: 100%; max-width: 1400px; margin-left: auto; margin-right: auto;
+    }
+    .search-wrapper {
+        display: flex; width: 100%;
+        align-items: center;
+        background: #fff; border-radius: 50px; padding: 5px 25px;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05); transition: transform 0.2s;
+    }
+    .search-wrapper:hover { transform: scale(1.005); }
+    .search-wrapper input {
+        border: none !important; box-shadow: none !important; flex: 1;
+        height: 45px; font-size: 16px; outline: none; background: transparent; color: #333;
+    }
+    .search-wrapper button {
+        background: none; border: none; color: #005f9e; font-size: 22px; cursor: pointer; padding: 0 10px;
+    }
+
+    /* --- LISTA DE TICKETS (Full Width & Transparente) --- */
+    #oooMainBox { margin: 0 !important; width: 100% !important; }
+    
+    .oooTile_TicketList {
+        display: block !important; 
+        width: 100% !important;
+        /* Fundo semi-transparente para leitura */
+        background-color: rgba(255, 255, 255, 0.85) !important; 
+        backdrop-filter: blur(15px);
+        border-radius: 12px; 
+        box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+        border: 1px solid rgba(255,255,255,0.4);
+    }
+    
+    /* Remover background dos itens para herdar transparência */
+    .oooTicketListItem {
+        background: transparent !important;
+        border-bottom: 1px solid rgba(0,0,0,0.1) !important;
+        transition: background-color 0.2s ease;
+        color: #000 !important;
+    }
+    
+    /* HOVER CORRIGIDO: Mantém transparência e texto preto */
+    .oooTicketListItem:hover {
+        /* Fundo apenas ligeiramente mais escuro/azul, mantendo transparência */
+        background-color: rgba(0, 95, 158, 0.1) !important;
+        cursor: pointer;
+    }
+    
+    .oooTicketListItem h3, .oooTicketListItem p, .oooTicketListItem span {
+        color: #000 !important; text-shadow: none !important;
+    }
+    .oooTicketListItem a { color: #005f9e !important; text-decoration: none; font-weight: bold; }
+
+    /* --- CHAT WIDGET --- */
+    #chat-widget-wrapper { display: block; }
+    
+    #chat-popup {
+        display: none; flex-direction: column;
+        width: 360px; height: 550px;
+        background: white; border-radius: 12px;
+        box-shadow: 0 10px 50px rgba(0,0,0,0.4);
+        z-index: 99999; border: 1px solid #ccc;
+        font-family: 'Segoe UI', sans-serif;
+        position: fixed; bottom: 50px; right: 30px;
+    }
+
+    .chat-header {
+        padding: 15px 20px; background: #005f9e; color: white;
+        border-radius: 12px 12px 0 0; display: flex; justify-content: space-between; align-items: center;
+        cursor: move; font-weight: bold; font-size: 16px;
+    }
+    
+    /* Aviso de Privacidade */
+    .chat-disclaimer {
+        background-color: #fff3cd; color: #856404;
+        font-size: 12px; padding: 10px 15px;
+        border-bottom: 1px solid #ffeeba;
+        text-align: center; line-height: 1.4;
+    }
+
+    #chat-messages {
+        flex: 1; overflow-y: auto; padding: 20px; background: #f4f6f9;
+        display: flex; flex-direction: column; gap: 12px;
+    }
+    
+    .chat-input-area {
+        padding: 15px; border-top: 1px solid #eee; display: flex; gap: 10px; background: #fff; border-radius: 0 0 12px 12px;
+    }
+    #chat-input { flex: 1; padding: 10px 15px; border-radius: 25px; border: 1px solid #ddd; outline: none; background: #f9f9f9; }
+    #chat-input:focus { background: #fff; border-color: #005f9e; }
+    
+    .msg { padding: 10px 16px; border-radius: 18px; max-width: 85%; font-size: 14px; line-height: 1.5; word-wrap: break-word; }
+    .msg.user { align-self: flex-end; background: #005f9e; color: white; border-bottom-right-radius: 2px; }
+    .msg.assistant { align-self: flex-start; background: #e9ecef; color: #333; border-bottom-left-radius: 2px; box-shadow: 0 1px 2px rgba(0,0,0,0.1); }
+    
+    /* Estilo dos Links no Chat */
+    .msg.assistant a { color: #005f9e !important; font-weight: bold; text-decoration: underline; pointer-events: auto; }
+
+    .typing-indicator span {
+        display: inline-block; width: 6px; height: 6px; background: #666; border-radius: 50%; 
+        animation: typing 1.4s infinite; margin: 0 2px;
+    }
+    @keyframes typing { 0%,100%{opacity:0.2; transform:scale(0.8);} 50%{opacity:1; transform:scale(1);} }
+</style>
+
+<div id='oooContent'>
+    <div id='oooMainBox'>
+        
+        <div id="custom-buttons-grid">
+            
+            <a href="[% Env("Baselink") %]Action=CustomerTicketMessage" class="modern-card" title="Criar um novo pedido de suporte neste portal">
+                <i class="fa fa-plus-circle main-icon"></i>
+                <span>Novo Ticket</span>
+            </a>
+            
+            <a href="https://balcao.up.pt/otobo/customer.pl?Action=CustomerTicketMessage" target="_blank" class="modern-card bg-grey" title="Criar ticket noutros serviços da Universidade do Porto (Balcão UP)">
+                <i class="fa fa-th-large main-icon"></i>
+                <i class="fa fa-plus-circle sub-icon"></i>
+                <span>Outros Serviços UP</span>
+            </a>
+            
+            <a href="[% Env("Baselink") %]Action=CustomerFAQExplorer" class="modern-card bg-green" title="Consultar a base de conhecimento">
+                <i class="fa fa-question-circle main-icon"></i>
+                <span>FAQs</span>
+            </a>
+            
+            <div id="grid-chat-trigger" class="modern-card bg-teal" title="Falar com o Assistente Virtual (IA)">
+                <i class="fa fa-comments main-icon"></i>
+                <span>Assistente Virtual</span>
+            </div>
+        </div>
+
+        <div id="custom-search-container">
+            <form action="[% Env("CGIHandle") %]" method="post" name="compose" class="search-wrapper">
+                <input type="hidden" name="Action" value="CustomerTicketOverview"/>
+                <input type="hidden" name="Subaction" value="Search"/>
+                <input type="text" name="Fulltext" placeholder="Pesquise nos seus tickets...">
+                <button type="submit" title="Pesquisar"><i class="fa fa-search"></i></button>
+            </form>
+        </div>
+
+        [% Data.TileHTML %]
+    </div>
+</div>
+
+<div id="chat-widget-wrapper">
+    <div id="chat-popup" class="chat-popup">
+        <div class="chat-header" id="chat-drag-handle">
+            <span><i class="fa fa-robot"></i> Assistente Virtual (em desenvolvimento)</span>
+            <span id="chat-close-btn" style="cursor:pointer; font-size:22px;">&times;</span>
+        </div>
+        
+        <div class="chat-disclaimer">
+            <i class="fa fa-shield"></i> O serviço corre em servidores UP/FCCN.<br>
+            Ainda assim, <b>evite partilhar passwords</b> ou dados sensíveis.<br>
+	    O assistente virtual poderá e deverá cometer erros.
+        </div>
+        
+        <div id="chat-messages">
+            <div class="msg assistant">Olá! Como posso ajudar?</div>
+        </div>
+        
+        <form id="chat-form" class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Escreva a sua dúvida..." autocomplete="off">
+            <button type="submit" style="background:none; border:none; color:#005f9e; cursor:pointer;">
+                <i class="fa fa-paper-plane" style="font-size: 20px;"></i>
+            </button>
+        </form>
+    </div>
+</div>
+
+<script type="text/javascript">
+document.addEventListener("DOMContentLoaded", function() {
+
+    // --- A. LIMPEZA ---
+    const badIDs = ['#oooTile01', '.oooTile_NewTicket', '#oooTile02', '.oooTile_PlainPicture', 
+                    '#oooTile04', '.oooTile_FeaturedLink', '#oooTile07', '.oooTile_InfoTile'];
+    badIDs.forEach(sel => { document.querySelectorAll(sel).forEach(el => el.remove()); });
+
+    // --- CHAT VARIABLES ---
+    const PROXY_CHECK = "/llmproxy/api/health";
+    const PROXY_CHAT = "/llmproxy/api/chat";
+    const chatPopup = document.getElementById('chat-popup');
+    const closeBtn = document.getElementById('chat-close-btn');
+    const msgs = document.getElementById('chat-messages');
+    const input = document.getElementById('chat-input');
+    const form = document.getElementById('chat-form');
+    
+    // Toggle Logic
+    function toggleChat() {
+        const isVisible = (window.getComputedStyle(chatPopup).display === 'flex');
+        if (isVisible) { 
+            chatPopup.style.display = 'none'; 
+        } else { 
+            chatPopup.style.display = 'flex'; 
+            setTimeout(() => input.focus(), 100);
+            msgs.scrollTop = msgs.scrollHeight;
+        }
+    }
+
+    const gridBtn = document.getElementById('grid-chat-trigger');
+    if(gridBtn) gridBtn.addEventListener('click', toggleChat);
+    if(closeBtn) closeBtn.addEventListener('click', toggleChat);
+
+    // Draggable Logic
+    const header = document.getElementById("chat-drag-handle");
+    let isDragging = false, startX, startY, initialLeft, initialTop;
+    header.addEventListener('mousedown', function(e) {
+        if(e.target.id === 'chat-close-btn') return;
+        e.preventDefault();
+        if (!chatPopup.style.left) {
+             const rect = chatPopup.getBoundingClientRect();
+             chatPopup.style.left = rect.left + 'px';
+             chatPopup.style.top = rect.top + 'px';
+             chatPopup.style.bottom = 'auto'; chatPopup.style.right = 'auto';
+        }
+        isDragging = true;
+        startX = e.clientX; startY = e.clientY;
+        initialLeft = parseFloat(chatPopup.style.left) || 0;
+        initialTop = parseFloat(chatPopup.style.top) || 0;
+        document.addEventListener('mousemove', onMouseMove);
+        document.addEventListener('mouseup', onMouseUp);
+    });
+    function onMouseMove(e) {
+        if (!isDragging) return;
+        chatPopup.style.top = (initialTop + e.clientY - startY) + 'px';
+        chatPopup.style.left = (initialLeft + e.clientX - startX) + 'px';
+    }
+    function onMouseUp() {
+        isDragging = false;
+        document.removeEventListener('mousemove', onMouseMove);
+        document.removeEventListener('mouseup', onMouseUp);
+    }
+
+    // --- PARSER DE MARKDOWN COM COFRE (VAULT) ---
+    // Isto resolve a duplicação de links ao esconder os links já processados
+    function parseMarkdown(text) {
+        if (!text) return "";
+        let html = text;
+        const vault = []; // O Cofre
+
+        // Helper para guardar no cofre
+        function save(content) {
+            vault.push(content);
+            return '%%%VAULT_' + (vault.length - 1) + '%%%';
+        }
+
+        // 1. Processar Negrito/Itálico
+        html = html.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+        html = html.replace(/\*(.*?)\*/g, '<i>$1</i>');
+
+        // 2. Processar Markdown Links [texto](url) -> HTML -> Cofre
+        html = html.replace(/\[([^\]]+)\]\(([^\)]+)\)/g, function(match, txt, url) {
+            return save(`<a href="${url}" target="_blank">${txt}</a>`);
+        });
+
+        // 3. Proteger Tags HTML que venham do LLM -> Cofre
+        html = html.replace(/<[^>]+>/g, function(match) {
+            return save(match);
+        });
+
+        // 4. Processar URLs "soltos" (agora seguro, pois os outros estão no cofre) -> Cofre
+        html = html.replace(/(https?:\/\/[a-zA-Z0-9\-._~:/?#[\]@!$&'()*+,;=%]+)/g, function(url) {
+            let cleanUrl = url.replace(/[.,;!?)]+$/, "");
+            let suffix = url.substring(cleanUrl.length);
+            return save(`<a href="${cleanUrl}" target="_blank">${cleanUrl}</a>`) + suffix;
+        });
+        
+        // 5. Emails "soltos" -> Cofre
+        html = html.replace(/([a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9._-]+)/g, function(email) {
+            let cleanEmail = email.replace(/[.,;!?)]+$/, "");
+            let suffix = email.substring(cleanEmail.length);
+            return save(`<a href="mailto:${cleanEmail}">${cleanEmail}</a>`) + suffix;
+        });
+
+        // 6. Restaurar Conteúdo do Cofre
+        // Nota: Substituímos o placeholder pelo conteúdo real (que contém tags)
+        html = html.replace(/%%%VAULT_(\d+)%%%/g, function(match, id) { return vault[id]; });
+        
+        // 7. Quebras de Linha
+        html = html.replace(/\n/g, '<br>');
+        return html;
+    }
+
+    // --- TYPEWRITER INTELIGENTE ---
+    async function typeWriter(element, html) {
+        // Separa tags HTML inteiras (ou blocos de links) do texto simples
+        const tokens = html.split(/(<a\s[^>]*>.*?<\/a>|<[^>]+>)/gi);
+        
+        for (let token of tokens) {
+            if (!token) continue;
+            
+            // Se começa por < é uma tag ou link completo -> Insere Imediato
+            if (token.startsWith('<')) {
+                element.innerHTML += token;
+            } else {
+                // Se é texto, escreve letra a letra
+                for (let i = 0; i < token.length; i++) {
+                    element.innerHTML += token.charAt(i);
+                    msgs.scrollTop = msgs.scrollHeight;
+                    await new Promise(r => setTimeout(r, 15));
+                }
+            }
+        }
+    }
+
+    // Helpers UI
+    function addMsg(cls) {
+        const div = document.createElement('div');
+        div.className = 'msg ' + cls;
+        div.innerHTML = ''; 
+        msgs.appendChild(div);
+        msgs.scrollTop = msgs.scrollHeight;
+        return div;
+    }
+
+    function addLoadingIndicator() {
+        const div = document.createElement('div');
+        div.className = 'typing-indicator';
+        div.innerHTML = '<span></span><span></span><span></span>';
+        msgs.appendChild(div);
+        msgs.scrollTop = msgs.scrollHeight;
+        return div;
+    }
+
+    // --- SUBMIT ---
+    form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const text = input.value.trim();
+        if (!text) return;
+
+        input.value = ''; input.disabled = true;
+        
+        const userDiv = addMsg('user');
+        userDiv.innerHTML = text;
+        
+        const loadingDiv = addLoadingIndicator();
+
+        try {
+            const res = await fetch(PROXY_CHAT, {
+                method: 'POST', headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({ message: text })
+            });
+            const data = await res.json();
+            loadingDiv.remove();
+            
+            const rawText = data.response || data.message || "Sem resposta.";
+            const parsedHTML = parseMarkdown(rawText);
+            const botMsg = addMsg('assistant');
+            
+            await typeWriter(botMsg, parsedHTML);
+
+        } catch (err) {
+            loadingDiv.remove();
+            const errDiv = addMsg('assistant');
+            errDiv.innerHTML = '<span style="color:red">Erro de ligação.</span>';
+        } finally {
+            input.disabled = false; input.focus();
+        }
+    });
+});
+</script>

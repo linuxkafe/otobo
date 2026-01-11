@@ -25,6 +25,7 @@ Um chat integrado na interface do cliente (*Customer Dashboard*) que atua como p
 * **Kill-Switch de Infraestrutura:** Se um serviço crítico estiver em baixo (detetado via monitorização), o chat informa imediatamente o utilizador sobre a avaria geral, impedindo sugestões de *troubleshooting* desnecessárias.
 * **Privacidade:** Opção de correr modelos locais (Ollama) ou transbordar para APIs externas apenas em picos de carga.
 
+*Como exemplo para um template para o chat, poderá ser utilizado o código incluído no diretório templates na raiz deste projeto*
 ---
 
 ## ⚙️ Integração: O Segredo está na Notificação

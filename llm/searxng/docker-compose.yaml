@@ -1,0 +1,53 @@
+services:
+  # Serviço SearXNG
+  searxng:
+    container_name: searxng
+    image: docker.io/searxng/searxng:latest
+    restart: "unless-stopped"
+    ports:
+      - "8080:8080"
+    networks:
+      - internal_searxng
+    extra_hosts:
+      - "llm.linuxkafe.com:1.1.1.1"
+    volumes:
+      # Mapeamento do settings.yml (manter em disco do host)
+      - ./searxng:/etc/searxng:rw
+      # Mapeamentos de ficheiros de motor (manter em disco do host)
+      - ./searxng/updigital.py:/usr/local/searxng/searx/engines/updigital.py:ro
+      - ./searxng/tickets.py:/usr/local/searxng/searx/engines/tickets.py:ro
+      - ./searxng/ilabstatus.py:/usr/local/searxng/searx/engines/ilabstatus.py:ro
+      # Adicionado: volume tmpfs para /tmp no container, garantindo que ficheiros temporários estão em memória
+      - type: tmpfs
+        target: /tmp
+        tmpfs:
+          size: 2048m # Opcional: define um limite de 50MB
+    
+    environment:
+      - SEARXNG_SEARCH_ENFORCE_ENGINES=true
+      - SEARXNG_GENERAL_ENABLED_ENGINES=updigital,tickets
+      - SEARXNG_SETTINGS_PATH=/etc/searxng/settings.yml
+      - SEARXNG_ENGINE_PATHS=/etc/searxng:/usr/local/searxng/searx/engines
+      - UWSGI_WORKERS=${SEARXNG_UWSGI_WORKERS:-4}
+      - UWSGI_THREADS=${SEARXNG_UWSGI_THREADS:-4}
+      - PYTHON_MP_CONTEXT=spawn
+    # ... (restante configuração do searxng)
+    cap_drop:
+      - ALL
+    cap_add:
+      - CHOWN
+      - SETGID
+      - SETUID
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "1m"
+        max-file: "1"
+
+networks:
+  # Rede de isolamento
+  internal_searxng:
+    driver: bridge
+
+# A secção 'volumes:' global foi removida
+# uma vez que 'valkey-data2' já não é necessário.
