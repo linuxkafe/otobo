@@ -328,13 +328,3 @@ O seu *adapter* está agora a correr em `http://[IP_DO_SERVIDOR]:4000`.
       * **Nome do Modelo:** `iaedu-custom`
 
 4.  **Sugestões de Follow-up:** Vá a Definições -\> Interface -\> Sugestões de Follow-up -\> e coloque em **OFF** (ou mude o Modelo de Sugestões para `iaedu-custom` em Definições -\> Geral).
-
-## Próximos Passos (Melhorias Futuras)
-
-Este *adapter* está agora funcional. As próximas melhorias seriam:
-
-1.  **Segurança Avançada (EnvironmentFile):** A API key ainda está em *plaintext* no ficheiro `.service`. A melhor prática seria movê-la para um ficheiro `.env` (ex: `/opt/iaedu-adapter/.env`), definir as permissões desse ficheiro para `chmod 600` (só o *owner* pode ler) e alterar o proprietário para `www-data`. Depois, no `.service`, substituir a linha `Environment=...` por `EnvironmentFile=/opt/iaedu-adapter/.env`.
-
-2.  **Mapeamento de `user_info`:** O *adapter* envia `user_info: "{}"`. Seria possível modificar o *adapter* para extrair o `user` do *body* do OpenWebUI e passar essa informação para a API `iaedu.pt`, se esta o suportar.
-
-3.  **Gestão de `channel_id`:** O `IAEDU_CHANNEL_ID_DEFAULT` está *hardcoded*. Se a tua API usar *channels* diferentes para fins diferentes, isto teria de ser gerido dinamicamente.
