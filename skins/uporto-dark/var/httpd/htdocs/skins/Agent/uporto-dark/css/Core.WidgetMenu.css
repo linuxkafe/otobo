@@ -16,6 +16,7 @@ along with this program. If not, see <https://www.gnu.org/licenses/>.
 /**
  * @package     Skin "Default"
  * @section     WidgetMenu
+ * @note        Dark Mode Adaptation by Gem
  */
 
 @media screen,projection,tv,handheld {
@@ -212,7 +213,7 @@ ul.ContextFunctions li:last-child:hover > a {
     background: #1f1f1f;
     border-bottom-left-radius: 10px;
     border-bottom-right-radius: 10px;
-/*    border-left: 1px solid #ccc;
+/* border-left: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
     border-right: 1px solid #ccc;
     box-shadow: 0 1px 4px 0 rgba(4, 0, 71, 0.16); */
@@ -345,6 +346,9 @@ ul.ContextFunctions li:last-child:hover > a {
 
 .Actions li select {
     font-size: 11px;
+    background-color: #333; /* Dark Mode Fix */
+    color: #eee;
+    border: 1px solid #555;
 }
 
 .Tab.Actions li {
@@ -392,14 +396,16 @@ ul.ContextFunctions li:last-child:hover > a {
 .LightRow {
 }
 
+/* DARK MODE FIX: Changed background from #ddd to #2d2d2d */
 .LightRow.Header {
-    background: #ddd;
+    background: #2d2d2d;
     padding-right: 5px;
     border-top-left-radius: 2px;
     border-top-right-radius: 2px;
     position: relative;
-    -webkit-box-shadow: inset 0 -1px 0 #FFF;
-    box-shadow: inset 0 -1px 0 #FFF;
+    -webkit-box-shadow: inset 0 -1px 0 #444; /* Dark shadow instead of white */
+    box-shadow: inset 0 -1px 0 #444;
+    border-bottom: 1px solid #1a1a1a;
 }
 
 .RTL .LightRow.Header {
@@ -408,7 +414,7 @@ ul.ContextFunctions li:last-child:hover > a {
 }
 
 .Collapsed .LightRow.Header {
-    border-bottom-color: #C6C5C4;
+    border-bottom-color: #1a1a1a;
     border-radius: 2px;
 }
 
@@ -421,17 +427,18 @@ ul.ContextFunctions li:last-child:hover > a {
     display: none;
 }
 
+/* DARK MODE FIX: Text color from #171717 to #e0e0e0 */
 .LightRow h2 {
     margin: 0;
     padding: 4px 0 5px;
     font-weight: normal;
-    color: #171717;
+    color: #e0e0e0;
 }
 
 .Collapsed .LightRow.Header {
-    -webkit-box-shadow: 0 -1px 0 #DDD inset;
-    box-shadow: 0 -1px 0 #DDD inset;
-    border-bottom-color: #AAA;
+    -webkit-box-shadow: 0 -1px 0 #444 inset;
+    box-shadow: 0 -1px 0 #444 inset;
+    border-bottom-color: #1a1a1a;
 }
 
 .LightRow .WidgetAction.Toggle {
@@ -449,6 +456,9 @@ ul.ContextFunctions li:last-child:hover > a {
 
 .LightRow select {
     margin-top: 1px;
+    background-color: #222; /* Dark Mode Fix */
+    color: #eee;
+    border: 1px solid #444;
 }
 
 .LightRow.Bottom .Actions li span input[type="checkbox"] {
@@ -472,6 +482,9 @@ ul.ContextFunctions li:last-child:hover > a {
 
 .Filter select {
     font-size: 11px;
+    background-color: #333; /* Dark Mode Fix */
+    color: #eee;
+    border: 1px solid #555;
 }
 
 .Filter .Concat {
@@ -480,6 +493,7 @@ ul.ContextFunctions li:last-child:hover > a {
     padding-top: 3px;
     font-weight: bold;
     font-size: 14px;
+    color: #ccc; /* Ensure visibility */
 }
 
 /*
@@ -539,7 +553,7 @@ span.Pagination a.Selected {
 }
 
 span.Pagination span.PaginationLimit {
-    color: #FF0000;
+    color: #FF5555; /* Slightly lighter red for readability on dark */
 }
 
 .Pagination a span {
@@ -549,6 +563,7 @@ span.Pagination span.PaginationLimit {
     text-indent: -9999px;
     background: url(../img/arrows.png) no-repeat;
     display: block;
+    filter: invert(1); /* DARK MODE FIX: Inverts black arrows to white */
 }
 
 .Pagination .ArrowLeft span {
@@ -574,6 +589,9 @@ span.Pagination span.PaginationLimit {
     font-size: 11px;
     font-family: inherit;
     text-align: right;
+    background-color: #222; /* Dark Mode Fix */
+    color: #eee;
+    border: 1px solid #555;
 }
 
 

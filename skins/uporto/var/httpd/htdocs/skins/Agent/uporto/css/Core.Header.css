@@ -1,0 +1,150 @@
+/* * OTOBO 11 Custom Skin - Header & Navigation 
+ * Optimized by OTOBO Trainer
+ */
+
+:root {
+    /* Definição de Cores - Altera aqui para mudar em todo o lado */
+    --primary-color: #1b96e2;
+    --primary-border: #1b96f9;
+    --header-bg: #18191a;
+    --text-white: #FFFFFF;
+    --text-black: #000000;
+}
+
+/* --- Cabeçalho Principal --- */
+#Header {
+    height: 72px;
+    padding: 10px 0 12px;
+    background: var(--header-bg);
+    color: var(--text-white);
+    position: relative;
+    /* Sombra suave para separar o cabeçalho do conteúdo (estilo OTOBO 11) */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1); 
+}
+
+/* --- Barra de Ferramentas (Ícones de topo) --- */
+#ToolBar a i {
+    color: var(--text-white) !important;
+    transition: color 0.3s ease;
+}
+
+#ToolBar a:hover i:hover {
+    color: var(--primary-color) !important;
+}
+
+/* Campo de Pesquisa no Topo */
+#ToolBar .Extended input[type=text] {
+    color: var(--text-black);
+    background: var(--text-white);
+    border: 1px solid var(--primary-border);
+    border-radius: 3px; /* Arredondamento para combinar com OTOBO 11 */
+    transition: all 0.3s ease;
+}
+
+#ToolBar .Extended input[type=text]:hover,
+#ToolBar .Extended input[type=text]:focus {
+    color: var(--text-white);
+    background: var(--primary-color);
+    border-color: var(--primary-border);
+}
+
+/* Avatar do Utilizador */
+#ToolBar li.UserAvatar div a, 
+#ToolBar li.UserAvatar div span {
+    background-color: var(--header-bg);
+    color: var(--text-white);
+}
+
+/* --- Navegação Principal --- */
+#Navigation > li > a {
+    transition: color 0.2s ease;
+}
+
+#Navigation > li > a:hover {
+    color: var(--primary-color);
+}
+
+#Navigation > li > a:after {
+    background: var(--primary-color);
+    color: var(--text-white);
+}
+
+/* Item Ativo no Menu */
+#Navigation > .Active > ul > li > a {
+    background: var(--header-bg);
+    color: var(--text-white); /* Garante contraste no ativo */
+}
+
+#Navigation > .Active > ul > li:hover > a {
+    color: var(--text-white);
+    background: var(--primary-color);
+}
+
+/* --- Tabelas de Dados (Dashboards e Listas) --- */
+.DataTable thead th {
+    color: var(--text-black);
+    font-weight: 600; /* Melhor legibilidade na fonte Quicksand */
+}
+
+.DataTable tr:hover td a {
+    color: var(--text-black);
+}
+
+/* Efeito Hover nas Linhas das Tabelas */
+.DataTable tbody tr:hover td, 
+.TableSmall tbody tr:hover td, 
+.DataTable tbody tr:active td.Clickable, 
+.TableSmall tbody tr:active td.Clickable, 
+.DataTable tr:nth-child(even):hover td.Highlight {
+    background: var(--primary-color);
+    color: var(--text-white);
+}
+
+/* Correção de Sintaxe (Removido o duplo #) */
+.DataTable .Row td.QueueOverviewTotals {
+    color: var(--primary-color);
+    font-weight: bold;
+}
+
+/* --- Widgets --- */
+.WidgetSimple > .Header h2,
+.WidgetSimple > .Header h3 {
+    color: var(--text-black);
+}
+
+.WidgetAction:hover i,
+.WidgetAction a:focus i {
+    color: var(--primary-color);
+}
+
+/* --- Listas de Filas e Títulos --- */
+.QueueOverviewList a,
+.Title {
+    color: var(--text-black);
+    transition: background 0.2s, color 0.2s;
+    text-decoration: none;
+}
+
+.QueueOverviewList a:hover,
+.Title:hover {
+    color: var(--text-white);
+    background: var(--primary-color);
+    border-radius: 2px; /* Pequeno detalhe estético */
+}
+
+/* --- Visualização de Artigos (Ticket Zoom) --- */
+/* Nota: Verifica se estas classes ainda se aplicam ao teu tema no OTOBO 11, 
+   pois a estrutura do TicketZoom mudou ligeiramente */
+
+.UseArticleColors tr.NotVisibleForCustomer > td {
+    background: var(--text-white) !important;
+    border-bottom-color: var(--text-white);
+    border-color: var(--text-white);
+}
+
+.UseArticleColors tr.NotVisibleForCustomer.Active > td,
+.UseArticleColors tr.NotVisibleForCustomer:hover > td {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color);
+    color: var(--text-white);
+}

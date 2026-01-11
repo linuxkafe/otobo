@@ -1,0 +1,394 @@
+/* * OTOBO 11 Custom Skin - Dark Mode
+ * Optimized by OTOBO Trainer
+ */
+
+:root {
+    /* --- Paleta Dark Mode --- */
+    
+    /* Cor de Destaque (Azul mais claro para contraste em fundo escuro) */
+    --primary-color: #3ab5e4; 
+    --primary-hover: #1b96e2;
+    
+    /* Fundos */
+    --bg-global: #121212;       /* Fundo da página */
+    --bg-header: #1e1e1e;       /* Fundo do cabeçalho */
+    --bg-component: #1e1e1e;    /* Fundo de widgets e tabelas */
+    --bg-input: #2c2c2c;        /* Fundo de campos de texto */
+
+    /* --- CORREÇÃO DO FUNDO BRANCO (O CULPADO) --- */
+    /* Sobrescreve a variável do sistema que estava forçando branco */
+    --colBGElement: #1e1e1e;    
+    
+    /* Textos */
+    --text-main: #e0e0e0;       /* Texto principal (não branco puro) */
+    --text-muted: #a0a0a0;      /* Texto secundário */
+    --text-header: #ffffff;     /* Texto de destaque */
+    
+    /* Bordas */
+    --border-color: #333333;
+}
+
+body {
+    --colBGElement: var(--bg-component) !important;
+
+    /* Cores de fundo secundárias (ex: linhas alternadas, fundos claros) */
+    --colBGLight: #262626 !important;       /* Era #f7f7f9 */
+    --colBGLightMedium: #2c2c2c !important; /* Era #eeeef2 */
+    --colBGMedium: #333333 !important;      /* Era #e5e5eb */
+    --colBGMediumDark: #444444 !important;  /* Era #cdcdd8 */
+
+    /* Ajuste de sombras para não ficarem estranhas no escuro */
+    --colShadowDark: rgba(0, 0, 0, 0.5) !important;
+    
+    /* Garantir que o texto base do sistema use nossa cor */
+    --colTextDark: var(--text-main) !important;
+}
+
+body, 
+#MainBox, 
+.MainBox, 
+.LayoutPopup,
+.ui-widget-content {
+    background-color: var(--bg-global) !important;
+    color: var(--text-main) !important;
+}
+
+/* --- Cabeçalho --- */
+#Header {
+    height: 72px;
+    padding: 10px 0 12px;
+    background: var(--bg-header);
+    color: var(--text-header);
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.5); 
+}
+
+/* --- Barra de Ferramentas (Ícones) --- */
+#ToolBar a i {
+    color: var(--text-muted) !important;
+    transition: color 0.3s ease;
+}
+
+#ToolBar a:hover i,
+#ToolBar a:hover i:hover {
+    color: var(--primary-color) !important;
+    text-shadow: 0 0 5px rgba(58, 181, 228, 0.5); /* Glow effect */
+}
+
+/* Inputs no Topo (Search) */
+#ToolBar .Extended input[type=text] {
+    color: var(--text-main);
+    background: var(--bg-input);
+    border: 1px solid var(--border-color);
+    border-radius: 3px;
+}
+
+#ToolBar .Extended input[type=text]:focus {
+    background: var(--bg-component);
+    border-color: var(--primary-color);
+    color: var(--text-header);
+}
+
+/* Avatar e Menus Dropdown */
+#ToolBar li.UserAvatar div,
+#ToolBar li.UserAvatar div a, 
+#ToolBar li.UserAvatar div span {
+    background-color: var(--bg-header) !important;
+    color: var(--text-main) !important;
+    border-color: var(--border-color);
+}
+
+#ToolBar li.UserAvatar div a:hover {
+    background-color: var(--primary-hover) !important;
+    color: #fff !important;
+}
+
+/* --- Navegação Principal --- */
+#Navigation > li > a {
+    color: var(--text-muted);
+    transition: all 0.2s ease;
+}
+
+#Navigation > li > a:hover {
+    color: var(--primary-color);
+}
+
+#Navigation > li > a:after {
+    background: var(--primary-color);
+}
+
+/* Submenus de Navegação */
+#Navigation > .Active > ul {
+    background: var(--bg-component);
+    border: 1px solid var(--border-color);
+}
+
+#Navigation > .Active > ul > li > a {
+    background: var(--bg-component);
+    color: var(--text-main);
+    border-bottom: 1px solid #333;
+}
+
+#Navigation > .Active > ul > li:hover > a {
+    background: var(--primary-hover);
+    color: #fff;
+}
+
+/* --- Tabelas (DataTables) --- */
+.DataTable, .TableSmall {
+    /* Adicionamos !important para garantir que sobrescreva o padrão branco do sistema */
+    background: var(--bg-component) !important;
+    color: var(--text-main);
+}
+
+.DataTable thead th {
+    background: #252525;
+    color: var(--text-header);
+    border-bottom: 2px solid var(--border-color);
+}
+
+/* Linhas alternadas e Hover */
+.DataTable tbody tr {
+    background-color: var(--bg-component);
+}
+
+.DataTable tbody tr:nth-child(even) {
+    background-color: #262626; /* Ligeiramente mais claro para zebra striping */
+}
+
+.DataTable tbody tr:hover td, 
+.DataTable tr:hover td a {
+    background: var(--primary-hover) !important;
+    color: #FFF !important;
+}
+
+.DataTable td {
+    border-color: var(--border-color);
+}
+
+/* --- Widgets (Caixas da Dashboard) --- */
+.WidgetSimple {
+    background: var(--bg-component);
+    border: 1px solid var(--border-color);
+}
+
+.WidgetSimple > .Header {
+    background: #252525;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.WidgetSimple > .Header h2,
+.WidgetSimple > .Header h3 {
+    color: var(--text-main);
+}
+
+.WidgetSimple > .Content {
+    background: var(--bg-component);
+}
+
+/* Links gerais */
+a {
+    color: var(--primary-color);
+}
+
+/* --- Filas e Títulos --- */
+.QueueOverviewList a,
+.Title {
+    color: var(--text-main);
+}
+
+.QueueOverviewList a:hover {
+    color: #FFF;
+}
+/* --- CKEditor 5 Dark Mode Overrides --- */
+
+/* Sobrescreve as variáveis de raiz do CKEditor para usar as nossas cores */
+:root {
+    --ck-color-base-background: var(--bg-component);
+    --ck-color-base-border: var(--border-color);
+    --ck-color-toolbar-background: var(--bg-header);
+    --ck-color-toolbar-border: var(--border-color);
+    
+    /* Cores do Texto dentro do Editor */
+    --ck-color-text: var(--text-main);
+    --ck-color-base-text: var(--text-main);
+    
+    /* Cores dos Botões e Hover */
+    --ck-color-button-default-hover-background: var(--primary-color);
+    --ck-color-button-default-active-background: var(--primary-hover);
+    --ck-color-button-on-background: var(--primary-color);
+    --ck-color-button-on-color: #ffffff;
+    
+    /* Dropdowns e Paineis */
+    --ck-color-list-background: var(--bg-header);
+    --ck-color-list-button-hover-background: var(--primary-color);
+    --ck-color-panel-background: var(--bg-header);
+    --ck-color-panel-border: var(--border-color);
+}
+
+/* Área de Escrita (Onde escreves o texto) */
+.ck.ck-editor__main > .ck-editor__editable:not(.ck-focused) {
+    background-color: var(--bg-input) !important;
+    color: var(--text-main) !important;
+    border-color: var(--border-color) !important;
+}
+
+.ck.ck-editor__main > .ck-editor__editable.ck-focused {
+    background-color: var(--bg-input) !important;
+    color: var(--text-main) !important;
+    border-color: var(--primary-color) !important; /* Destaque quando ativo */
+    box-shadow: 0 0 5px rgba(58, 181, 228, 0.3) !important;
+}
+
+/* Barra de Ferramentas (Toolbar) */
+.ck.ck-toolbar {
+    background-color: var(--bg-header) !important;
+    border-color: var(--border-color) !important;
+}
+
+/* --- Ícones da Toolbar (Correção SVG) --- */
+
+/* Forçar a cor do ícone (SVG Path) para claro */
+.ck.ck-button .ck.ck-icon,
+.ck.ck-button .ck.ck-icon *,
+.ck.ck-button .ck.ck-icon path {
+    fill: var(--text-main) !important; /* Cinza claro (#e0e0e0) */
+    color: var(--text-main) !important;
+}
+
+/* Quando passamos o rato ou o botão está ativo (ex: Negrito ligado) */
+.ck.ck-button:hover .ck.ck-icon *,
+.ck.ck-button:hover .ck.ck-icon path,
+.ck.ck-button.ck-on .ck.ck-icon *,
+.ck.ck-button.ck-on .ck.ck-icon path {
+    fill: #ffffff !important; /* Branco puro para destaque */
+    color: #ffffff !important;
+}
+
+/* Fundo do botão quando está ativo (ex: Negrito ativado) */
+.ck.ck-button.ck-on {
+    background-color: var(--primary-color) !important;
+}
+
+/* Seta dos dropdowns (aquelas setinhas pequenas ao lado dos ícones) */
+.ck.ck-dropdown__arrow {
+    color: var(--text-main) !important;
+}
+
+/* Dropdowns (ex: Escolha de formato de texto) */
+.ck.ck-dropdown__panel {
+    border-color: var(--border-color) !important;
+}
+
+/* Placeholder (Texto "Escreva aqui...") */
+.ck .ck-placeholder {
+    color: var(--text-muted) !important;
+    opacity: 0.6;
+}
+/* 1. Forçar a cor do texto geral para claro */
+.ck.ck-content,
+.ck.ck-editor__editable,
+.ck.ck-editor__main .ck-editor__editable {
+    color: var(--text-main) !important; /* Usa o teu cinza claro/branco */
+    caret-color: #ffffff; /* Cor do cursor a piscar */
+}
+
+/* 2. Garantir que parágrafos, listas e spans herdam essa cor */
+.ck.ck-content p,
+.ck.ck-content li,
+.ck.ck-content span,
+.ck.ck-content div {
+    color: inherit !important; 
+}
+
+/* 3. Correção Crítica: Links dentro do editor */
+/* O padrão é azul escuro (#00something), que não se vê no preto. */
+.ck.ck-content a {
+    color: #64b5f6 !important; /* Um azul mais claro e legível (Material Blue 300) */
+    text-decoration: underline;
+}
+
+/* 4. Correção para texto colado (que traga estilos inline pretos) */
+.ck.ck-content span[style*="color: black"],
+.ck.ck-content span[style*="color: #000000"] {
+    color: var(--text-main) !important;
+}
+/* --- Correção dos Labels de Texto na Toolbar --- */
+
+/* 1. Texto visível nos botões (ex: "Parágrafo") */
+.ck.ck-toolbar .ck.ck-button .ck.ck-button__label {
+    color: var(--text-main) !important; /* Cinza claro */
+    cursor: pointer;
+}
+
+/* 2. Texto ao passar o rato ou quando o menu está aberto */
+.ck.ck-toolbar .ck.ck-button:hover .ck.ck-button__label,
+.ck.ck-toolbar .ck.ck-button.ck-on .ck.ck-button__label {
+    color: #ffffff !important; /* Branco puro */
+}
+
+/* --- Correção para os Menus Dropdown (Quando clicas em "Parágrafo") --- */
+
+/* Fundo da lista dropdown */
+.ck.ck-list {
+    background-color: var(--bg-header) !important;
+    border: 1px solid var(--border-color) !important;
+}
+
+/* Texto dos itens dentro da lista */
+.ck.ck-list__item .ck-button {
+    color: var(--text-main) !important;
+}
+
+/* Label dentro da lista */
+.ck.ck-list__item .ck-button .ck-button__label {
+    color: inherit !important; /* Herda a cor definida acima */
+}
+
+/* Item da lista ao passar o rato (Hover) */
+.ck.ck-list__item .ck-button:hover {
+    background-color: var(--primary-color) !important;
+    color: #ffffff !important;
+}
+
+/* Item da lista selecionado (Ativo) */
+.ck.ck-list__item .ck-button.ck-on {
+    background-color: var(--bg-input) !important;
+    color: var(--primary-color) !important;
+    font-weight: bold;
+}
+/* --- CORREÇÃO DE HOVER (BRANCO NO BRANCO) --- */
+
+/* 1. Botões da Toolbar ao passar o rato */
+/* Força o fundo a ser AZUL para contrastar com o texto branco */
+.ck.ck-toolbar .ck.ck-button:hover,
+.ck.ck-toolbar .ck.ck-button.ck-on:hover {
+    background-color: var(--primary-color) !important; 
+    border-color: var(--primary-color) !important;
+    color: #ffffff !important;
+}
+
+/* 2. Garante que os ícones (SVG) ficam brancos sobre o fundo azul */
+.ck.ck-toolbar .ck.ck-button:hover .ck.ck-icon,
+.ck.ck-toolbar .ck.ck-button:hover .ck.ck-icon *,
+.ck.ck-toolbar .ck.ck-button:hover .ck.ck-icon path {
+    fill: #ffffff !important;
+    color: #ffffff !important;
+}
+
+/* 3. Garante que o TEXTO (ex: "Parágrafo") fica branco sobre o fundo azul */
+.ck.ck-toolbar .ck.ck-button:hover .ck.ck-button__label {
+    color: #ffffff !important;
+}
+
+/* 4. Itens das Listas (Dropdowns) ao passar o rato */
+/* Isto corrige o menu de escolha de formatos */
+.ck.ck-list__item .ck-button:hover {
+    background-color: var(--primary-color) !important;
+    color: #ffffff !important;
+}
+
+.ck.ck-list__item .ck-button:hover .ck.ck-button__label,
+.ck.ck-list__item .ck-button:hover .ck.ck-button__label * {
+    color: #ffffff !important;
+}

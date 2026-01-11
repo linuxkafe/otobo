@@ -1,0 +1,50 @@
+/* 1. Reset Total para a Tabela e Células no Dashboard */
+.WidgetSimple .DataTable,
+.WidgetSimple .DataTable tbody,
+.WidgetSimple .DataTable tbody tr,
+.WidgetSimple .DataTable tbody td {
+    background-color: transparent !important; /* Remove qualquer branco herdado */
+    color: #e0e0e0 !important;
+}
+
+/* 2. Cabeçalhos da Tabela (Onde diz "Nº Ticket", "Título", etc.) */
+.WidgetSimple .DataTable thead th {
+    background-color: #252525 !important;
+    color: #ffffff !important;
+    border-bottom: 1px solid #555 !important;
+    border-top: none !important;
+}
+
+/* 3. ZEBRA STRIPING (O Culpado dos fundos brancos) */
+/* Força as linhas pares e ímpares a serem escuras */
+.WidgetSimple .DataTable tbody tr:nth-child(odd) {
+    background-color: #1e1e1e !important; /* Fundo base escuro */
+}
+
+.WidgetSimple .DataTable tbody tr:nth-child(even) {
+    background-color: #2c2c2c !important; /* Ligeiramente mais claro, mas ESCURO */
+}
+
+/* 4. Links nos Tickets (Para não ficarem pretos/invisíveis) */
+.WidgetSimple .DataTable tbody td a {
+    color: #64b5f6 !important;
+    text-decoration: none;
+}
+
+/* 5. HOVER (Passar o rato) - Fundo Azul */
+.WidgetSimple .DataTable tbody tr:hover,
+.WidgetSimple .DataTable tbody tr:hover td {
+    background-color: #1b96e2 !important;
+    color: #ffffff !important;
+}
+
+.WidgetSimple .DataTable tbody tr:hover td a {
+    color: #ffffff !important; /* Link fica branco no hover */
+}
+
+/* 6. CORREÇÃO ESPECÍFICA para a classe "Content" que envolve a tabela */
+/* Às vezes o widget pinta o fundo do contentor de branco */
+.WidgetSimple .Content {
+    background-color: #1e1e1e !important;
+    border: none !important;
+}

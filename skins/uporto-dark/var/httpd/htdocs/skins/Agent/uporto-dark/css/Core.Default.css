@@ -1,9 +1,16 @@
-/*
-Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
+/* OTOBO is a web-based ticketing system for service organisations.
 
-This software comes with ABSOLUTELY NO WARRANTY. For details, see
-the enclosed file COPYING for license information (GPL). If you
-did not receive this file, see https://www.gnu.org/licenses/gpl-3.0.txt.
+Copyright (C) 2001-2020 OTRS AG, https://otrs.com/
+Copyright (C) 2019-2021 Rother OSS GmbH, https://otobo.de/
+
+This program is free software: you can redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation, either version 3 of the License, or (at your option) any later version.
+This program is distributed in the hope that it will be useful, but WITHOUT
+ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.
+You should have received a copy of the GNU General Public License
+along with this program. If not, see <https://www.gnu.org/licenses/>.
 */
 
 /**
@@ -51,7 +58,7 @@ body {
     margin: 0px auto 20px auto;
     line-height: 30px;
     border-radius: 50px;
-    background: #f92;
+    background: #fef235;
     color: #fff;
     transition: background 2s ease;
     float: none;
@@ -169,13 +176,14 @@ body {
  * @subsection  Links
  */
 
-a {
+a, a:visited {
     text-decoration: none;
+    color: #659ac6;
 }
 
 a:hover,
 a:focus {
-    color: #F72;
+    color: #82c7ff;
 }
 
 /**
@@ -189,24 +197,24 @@ h1 {
 
 h2 {
     font-size: 14px;
-    color: #474747;
+    color: #659ac6;
     margin-bottom: 10px;
 }
 
 h3 {
     font-size: 14px;
-    color: #00023c;
+    color: #c8c6c4;
     margin-bottom: 5px;
 }
 
 h4 {
-    color: #00023c;
+    color: #c8c6c4;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
 h5 {
-    color: #00023c;
+    color: #c8c6c4;
     margin-bottom: 5px;
 }
 
@@ -307,11 +315,11 @@ dd {
 }
 
 .Warning {
-    color: #ff9050;
+    color: #f5af36;
 }
 
 .Notice {
-    color: #00023c;
+    color: #c8c6c4;
 }
 
 .Confirmation {
@@ -372,7 +380,8 @@ div.DnDUploadBox {
 }
 
 div.DnDUpload {
-    border: 1px solid #ccc;
+    border: 1px solid #272727;
+    border-radius: 10px;
     color: #aaa;
     min-height: 60px;
     text-align: center;
@@ -380,6 +389,7 @@ div.DnDUpload {
     margin-bottom: 5px;
     max-width: 622px;
     box-sizing: border-box;
+    background-color: #1f1f1f;
 }
 
 span.ReadyForUpload {
@@ -388,8 +398,8 @@ span.ReadyForUpload {
 }
 
 div.DnDUpload:focus {
-    border-color: #000;
-    color: #000;
+    border-color: #c8c6c4;
+    color: #c8c6c4;
 }
 
 input.AjaxDnDUpload.Error + div.DnDUpload {
@@ -481,7 +491,7 @@ table.AttachmentList .Progress {
     display: block;
     height: 4px;
     margin: 3px 0px;
-    background: #f92;
+    background: #fef235;
     width: 0px;
 }
 
@@ -501,7 +511,7 @@ table.AttachmentList .Delete {
 }
 
 table.AttachmentList .AttachmentDelete:focus i {
-    color: #000;
+    color: #c8c6c4;
 }
 
 table.AttachmentList.DataTable thead th {
@@ -678,14 +688,14 @@ table.AttachmentList.DataTable thead th {
     list-style-type: none;
     margin: 0px 2px 15px 0px;
     padding: 7px 15px 4px 0px;
-    background: #f5f5f5;
+    background: #1f1f1f;
     position: relative;
     padding-left: 0px;
     padding-right: 15px;
     overflow-y: hidden;
     overflow-x: auto;
     white-space: nowrap;
-    box-shadow: 1px 1px 0px #e9e9e9;
+    box-shadow: 1px 1px 0px #000;
 }
 
 .RTL .BreadCrumb {
@@ -697,7 +707,7 @@ table.AttachmentList.DataTable thead th {
     display: inline-block;
     margin: 0px 2px 0px 2px;
     padding-left: 35px;
-    color: #777;
+    color: #dbd9d7;
     position: relative;
     white-space: nowrap;
     vertical-align: middle;
@@ -716,11 +726,11 @@ table.AttachmentList.DataTable thead th {
 
 .BreadCrumb li:first-child a i {
     font-size: 16px;
-    color: #777;
+    color: #c8c6c4;
 }
 
 .BreadCrumb li:first-child a:hover i {
-    color: #00023c;
+    color: #dbd9d7;
 }
 
 .RTL .BreadCrumb li {
@@ -738,7 +748,7 @@ table.AttachmentList.DataTable thead th {
 }
 
 .BreadCrumb a {
-    color: #000;
+    color: #c8c6c4;
     position: relative;
 }
 
@@ -748,7 +758,7 @@ table.AttachmentList.DataTable thead th {
     width: 0px;
     content: "";
     bottom: 0px;
-    border-bottom: 1px solid #bbb;
+    border-bottom: 1px solid #3ab5e4;
     transition: all ease 0.3s;
 }
 
@@ -774,12 +784,12 @@ table.AttachmentList.DataTable thead th {
 .BreadCrumb li:after {
     left: 0px;
     border-color: rgba(255, 255, 255, 0);
-    border-left-color: #fff;
+    border-left-color: #141414;
 }
 
 .RTL .BreadCrumb li:after {
     border-left-color: transparent;
-    border-right-color: #fff;
+    border-right-color: #141414;
     left: auto;
     right: 0px;
 }
@@ -787,14 +797,14 @@ table.AttachmentList.DataTable thead th {
 .BreadCrumb li:before {
     left: -5px;
     border-color: rgba(238, 238, 238, 0);
-    border-left-color: #f5f5f5;
+    border-left-color: #1f1f1f;
     z-index: 2;
 }
 
 .RTL .BreadCrumb li:before {
     left: auto;
     right: -5px;
-    border-right-color: #f5f5f5;
+    border-right-color: #141414;
     border-left-color: transparent;
 }
 
@@ -863,7 +873,7 @@ table.AttachmentList.DataTable thead th {
 
 .MessageBox {
     margin: 0px;
-    background: #F7AE40;
+    background: #F6A72B;
     position: relative;
     z-index: 1;
 }
@@ -884,7 +894,17 @@ table.AttachmentList.DataTable thead th {
 
 .MessageBox p,
 .MessageBox a {
-    color: #442A0B;
+    color: rgba(255,255,255,0.8);
+}
+
+.MessageBox.Info a,
+.MessageBox.Error a {
+    transition: color ease 0.3s;
+}
+
+.MessageBox a:hover,
+.MessageBox a:hover {
+    color: #fff;
 }
 
 .MessageBox a:hover {
@@ -895,19 +915,21 @@ table.AttachmentList.DataTable thead th {
     margin-top: 2px;
 }
 
+.MessageBox.Notice p,
+.MessageBox.Notice a {
+    color: #1f1f1f;
+}
+
+.MessageBox.Notice a:hover {
+    color: #000;
+}
+
 .MessageBox.Error {
-    background: #b8384e;
+    background: #DA3633;
 }
 
 .MessageBox.Confirmation {
-    background: #049E35;
-}
-
-.MessageBox.Error p,
-.MessageBox.Error a,
-.MessageBox.Confirmation p,
-.MessageBox.Confirmation a {
-    color: rgba(255, 255, 255, 0.8);
+    background: #133c4d;
 }
 
 .MessageBox p a:after {
@@ -922,22 +944,7 @@ table.AttachmentList.DataTable thead th {
 }
 
 .MessageBox.Info {
-    background-color: #2A5464;
-}
-
-.MessageBox.Info p,
-.MessageBox.Info a {
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.MessageBox.Info a,
-.MessageBox.Error a {
-    transition: color ease 0.3s;
-}
-
-.MessageBox.Info a:hover,
-.MessageBox.Error a:hover {
-    color: #fff;
+    background-color: #133c4d;
 }
 
 .MessageBox a.Button:after {
@@ -954,15 +961,15 @@ table.AttachmentList.DataTable thead th {
 }
 
 .MessageBox.Info a.Button {
-    background-color: #3E6C7C;
+    background-color: #333;
 }
 
 .MessageBox.Info a.Button:hover {
-    background-color: #4B7C8E;
+    background-color: #444;
 }
 
 .MessageBox.Info a.Button i {
-    color: #89C6D1;
+    color: #3ab5e4;
 }
 
 form .MessageBox{
@@ -1044,7 +1051,7 @@ div.UnreadArticles i {
     top: 0px;
     z-index: 2;
     font-size: 14px;
-    color: #bfbfce;
+    color: #c8c6c4;
 }
 
 span.UnreadArticles em,
@@ -1054,7 +1061,7 @@ div.UnreadArticles em {
 
 span.UnreadArticles i:first-child,
 div.UnreadArticles i:first-child {
-    color: #777 !important;
+    color: #c8c6c4 !important;
     font-size: 16px;
     z-index: 1;
     left: -1px;
@@ -1063,16 +1070,16 @@ div.UnreadArticles i:first-child {
 
 span.UnreadArticles.Remarkable i,
 div.UnreadArticles.Remarkable i {
-    color: #F2BD0E;
+    color: #c8c6c4;
 }
 
 span.UnreadArticles.Ordinary,
 div.UnreadArticles.Ordinary {
-    color: #bfbfce;
+    color: #c8c6c4;
 }
 
 tbody tr:hover span.UnreadArticles i {
-    color: #fff;
+    color: #F6A72B;
 }
 
 span.ImportantArticles {
@@ -1081,7 +1088,7 @@ span.ImportantArticles {
     height: 16px;
     float: right;
     margin: -2px 0px 0px 23px;
-    color: #C10505;
+    color: #ea2400;
     font-size: 13px;
 }
 
@@ -1090,7 +1097,7 @@ span.ImportantArticles em {
 }
 
 span.ImportantArticles i {
-    color: #C10505;
+    color: #ea2400;
 }
 
 /**
@@ -1120,7 +1127,7 @@ span.ImportantArticles i {
     width: 16px;
     display: inline-block;
     vertical-align: top;
-    color: #00023c;
+    color: #999;
 }
 
 .RTL .DatepickerIcon {
@@ -1129,14 +1136,14 @@ span.ImportantArticles i {
 
 /* Vacation Days */
 td.Highlight a.ui-state-default {
-    border: 1px solid #fad42e;
-    background: #ffe45c !important;
-    background: -moz-linear-gradient(top,  #fff0a5 0%, #ffe45c 100%) !important;
-    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#fff0a5), color-stop(100%,#ffe45c)) !important;
-    background: -webkit-linear-gradient(top,  #fff0a5 0%,#ffe45c 100%) !important;
-    background: -o-linear-gradient(top,  #fff0a5 0%,#ffe45c 100%) !important;
-    background: -ms-linear-gradient(top,  #fff0a5 0%,#ffe45c 100%) !important;
-    background: linear-gradient(to bottom,  #fff0a5 0%,#ffe45c 100%) !important;
+    border: 1px solid #3ab5e4;
+    background: #3ab5e4 !important;
+    background: -moz-linear-gradient(top,  #2c8bb0 0%, #3ab5e4 100%) !important;
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#2c8bb0), color-stop(100%,#3ab5e4)) !important;
+    background: -webkit-linear-gradient(top,  #2c8bb0 0%,#3ab5e4 100%) !important;
+    background: -o-linear-gradient(top,  #2c8bb0 0%,#3ab5e4 100%) !important;
+    background: -ms-linear-gradient(top,  #2c8bb0 0%,#3ab5e4 100%) !important;
+    background: linear-gradient(to bottom,  #2c8bb0 0%,#3ab5e4 100%) !important;
 }
 
 /* Today */
@@ -1175,7 +1182,7 @@ td.Highlight a.ui-state-default {
 .ui-menu-item:focus,
 .ui-menu-item:active,
 .ui-autocomplete .ui-menu-item-wrapper.ui-state-active {
-    background: #eee;
+    background: #666;
 }
 
 /**
@@ -1255,6 +1262,7 @@ iframe.TextOption.CustomerUserAddressBook {
     background: #FFF;
     padding: 10px;
     min-height: 70px;
+    color: #141414;
 }
 
 .ArticleHTML {
@@ -1324,7 +1332,7 @@ iframe.TextOption.CustomerUserAddressBook {
 #ChatStartDialog form textarea {
     width: 380px;
     height: 30px;
-    font-family: arial, sans-serif;
+    font-family: Arial, sans-serif;
     padding: 3px;
 }
 
@@ -1340,7 +1348,7 @@ iframe.TextOption.CustomerUserAddressBook {
 }
 
 #ChatStartDialog form .Primary:focus {
-    border-color: #00023c;
+    border-color: #c8c6c4;
 }
 
 .ChatProtocol {
@@ -1357,11 +1365,19 @@ iframe.TextOption.CustomerUserAddressBook {
 /*
 * Bug #8288: Autocomplete search results show up in Times font when using Internet Explorer
 */
+.ui-widget-content {
+    border: 0px !important;
+    color: #c8c6c4 !important;
+    background: #1f1f1f !important;
+}
+
 .ui-menu-item {
+    background: #1f1f1f;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 .ui-menu .ui-menu-item a {
+    color: #c8c6c4 !important;
     display: block;
     padding: 2px;
     border: 0px;
@@ -1372,7 +1388,7 @@ iframe.TextOption.CustomerUserAddressBook {
 }
 
 .ui-widget-header {
-    background: #eee !important;
+    background: #1f1f1f !important;
     border: 0px !important;
     font-weight: normal !important;
 }
@@ -1380,7 +1396,7 @@ iframe.TextOption.CustomerUserAddressBook {
 .ui-state-default,
 .ui-widget-content .ui-state-default,
 .ui-widget-header .ui-state-default {
-    background: #f2f2f2 !important;
+    background: #1f1f1f !important;
 }
 
 .ui-state-hover,
@@ -1389,7 +1405,7 @@ iframe.TextOption.CustomerUserAddressBook {
 .ui-state-focus,
 .ui-widget-content .ui-state-focus,
 .ui-widget-header .ui-state-focus {
-    background: #ddd !important;
+    background: #333 !important;
 }
 
 /**
@@ -1419,7 +1435,7 @@ input.cke_dialog_ui_input_password:focus,
 input.cke_dialog_ui_input_text:focus,
 textarea.cke_dialog_ui_input_textarea:focus {
     box-shadow: none !important;
-    border-color: #f92 !important;
+    border-color: #fef235 !important;
 }
 
 /**
@@ -1781,6 +1797,37 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
     color: #777;
 }
 
+/* Scrollbar */
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  border-radius: 5px;
+  background: transparent;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #444;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* iFrame Background */
+iframe {
+    border: 1px solid #fff;
+    border-radius: 5px;
+    background-color: #fff !important;
+}
+
 }
 
 /*
@@ -1842,20 +1889,49 @@ For licensing, see LICENSE.md or http://ckeditor.com/license
         font-size: 12px;
         margin-top: -6px;
         display: none;
-        color: #aaa;
+        color: #555;
         transition: color ease 0.3s;
     }
 
     .TableFilterContainer .FilterRemove:focus,
     .TableFilterContainer .FilterRemove:hover,
     .TableFilterContainer .FilterRemove:active {
-        color: #000;
+        color: #c8c6c4;
     }
 
     .TableFilterContainer input,
     .TableFilterContainer input.FilterBox {
         padding: 7px !important;
         box-sizing: border-box;
+	    border-radius: 10px;
         width: 100%;
     }
+
+    .fa {
+        color: #c8c6c4;
+    }
+}
+
+/* --- FIX LEGENDA/LABELS (Melhoria de Leitura Dark Mode) --- */
+
+/* Força cor clara e remove negrito excessivo para todas as labels comuns */
+label,
+fieldset.TableLike label,
+.LayoutPopup fieldset.TableLike label,
+.SidebarColumn label {
+    color: #e0e0e0 !important;      /* Cinza bem claro (quase branco) */
+    font-weight: 500 !important;    /* Reduz o peso (de bold/700 para medium/500 ou normal/400) */
+    text-shadow: none !important;   /* Remove sombras claras que atrapalham em fundo escuro */
+    font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif; /* Opcional: Fonte mais limpa */
+    letter-spacing: 0.02em;         /* Leve espaçamento para facilitar leitura em fundo preto */
+}
+
+/* Ajuste específico para labels "Obrigatórios" (com asterisco) */
+fieldset.TableLike label.Mandatory span.Marker {
+    color: #ff6b6b !important;      /* Vermelho mais claro/pastel para não ferir a vista */
+}
+
+/* Se usar widgets de dashboard, garante que os títulos internos fiquem legíveis */
+.WidgetSimple .Content label {
+    color: #ccc !important;
 }

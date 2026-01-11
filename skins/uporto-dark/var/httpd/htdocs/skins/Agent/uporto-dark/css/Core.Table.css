@@ -928,4 +928,15 @@ td a:hover i {
     color: #c8c6c4;
 }
 
+/* Customização para tabela padrão */
+.DataTable tbody tr:nth-child(even) {
+    /* Corrigido de #e0e0e0 para uma cor escura de zebra */
+    background-color: #262626; 
+}
+
+/* Customização para Widgets (Isso resolve o Widget Favourites) */
+ul.Tablelike li:nth-child(even) {
+    background-color: #262626;
+}
+
 } /* end @media */

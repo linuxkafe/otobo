@@ -380,11 +380,10 @@ ul.Tablelike li.Header + li {
 }
 
 .WidgetBox > .Content {
-    background: #ffffff;
+    background: var(--bg-component) !important; /* Força o fundo escuro */
     min-height: 200px;
-    border-left: 1px solid #C6C5C4;
-    border-right: 1px solid #C6C5C4;
-    border-bottom: 1px solid #C6C5C4;
+    border: 1px solid var(--border-color); /* Ajuste a borda também para não ficar cinza claro */
+    color: var(--text-main);
 }
 
 .Collapsed > .Content {
