@@ -90,3 +90,5 @@ Ideal para ambientes institucionais ou empresariais:
 * **SearXNG**: Motor de metapesquisa necessário para executar as consultas RAG (Status, Tickets, Web).
 * **Backend LLM**: Ollama (recomendado para local) ou endpoint compatível com OpenAI.
 * **Acesso SMTP**: O servidor onde corre o serviço de LLM deve conseguir enviar emails para o OTOBO.
+
+** O desenvolvimento para os diversos microserviços e scripts python fez uso de tecnologia generativa como o Gemini 3**
