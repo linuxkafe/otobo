@@ -11,6 +11,7 @@ Este projeto implementa uma camada de inteligência artificial sobre o OTOBO, pe
 
 ### 1. Automação de Tickets (Email Handler)
 O sistema interceta notificações de novos tickets e gera respostas ou sugestões técnicas imediatas.
+![Resposta automática a um ticket](img/llm.png)
 
 * **Triagem Inteligente via Metadados:** O comportamento da IA é definido pela configuração da Fila (Queue) no OTOBO.
 * **Contexto Dinâmico:** Uma notificação vinda da fila "Recursos Humanos" gera uma resposta administrativa; uma vinda da fila "Servidores" gera uma resposta técnica de SysAdmin.
@@ -20,7 +21,8 @@ O sistema interceta notificações de novos tickets e gera respostas ou sugestõ
 
 ### 2. Assistente Virtual (Chat Widget)
 Um chat integrado na interface do cliente (*Customer Dashboard*) que atua como primeira linha de suporte.
-
+![Assistente Virtual no Interface do Cliente](img/llmotobo.png)
+![Assistente Virtual no Interface do Cliente com o Contexto do Estado do Serviço](img/llmotobostats.png)
 * **RAG (Retrieval-Augmented Generation):** O assistente consulta bases de conhecimento internas (Elasticsearch), manuais e estados de serviço antes de responder.
 * **Kill-Switch de Infraestrutura:** Se um serviço crítico estiver em baixo (detetado via monitorização), o chat informa imediatamente o utilizador sobre a avaria geral, impedindo sugestões de *troubleshooting* desnecessárias.
 * **Privacidade:** Opção de correr modelos locais (Ollama) ou transbordar para APIs externas apenas em picos de carga.
